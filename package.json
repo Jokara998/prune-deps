@@ -1,0 +1,42 @@
+{
+  "name": "prune-deps",
+  "version": "1.0.0",
+  "description": "View usage and prune dependencies in your project.",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "prune-deps": "./index.js"
+  },
+  "preferGlobal": true,
+  "author": "Stefan <stefanjokic198@gmai.com>",
+  "license": "MIT",
+  "keywords": [
+    "usage",
+    "prune",
+    "check",
+    "dependencies",
+    "devDependencies",
+    "unused"
+  ],
+  "bugs": {
+    "url": "https://github.com/Jokara998/prune-deps/issues"
+  },
+  "homepage": "https://github.com/Jokara998/prune-deps#readme",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "depcheck": "^1.4.6",
+    "execa": "^8.0.1",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.11",
+    "json-parse-even-better-errors": "^3.0.0",
+    "lodash": "^4.17.21",
+    "ora": "^7.0.1"
+  },
+  "devDependencies": {}
+}
