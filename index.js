@@ -50,10 +50,10 @@ depcheck(process.cwd(), depCheckOptions).then((unused) => {
   const usageOfDependecies = _.get(unused, "using", {});
   let usageByDependency = _.chain(usageOfDependecies)
     .entries()
-    .map(([key, value]) => ({ [key]: { count: value?.length || 0 } }))
+    .map(([key, value]) => ({ name: key, count: value?.length || 0 }))
     .value();
 
-  usageByDependency = _.sortBy(_.values(usageByDependency), ["count"]);
+  usageByDependency = _.orderBy(_.values(usageByDependency), ["count"], ["desc"]);
 
   const optChoices = [unselectable()];
   const opts = _.values(OPTS);
@@ -83,11 +83,12 @@ depcheck(process.cwd(), depCheckOptions).then((unused) => {
       if (answers?.options === OPTS.usage) {
         console.log(`${chalk.bold.underline.green("Dependecies usage: ")} \n`);
         _.forEach(usageByDependency, (dep) => {
-          const depName = _.get(_.keys(dep), "[0]", "");
-          if (depName && dep[depName]?.count) {
+          const depName = _.get(dep, "name", "");
+          const depCount = _.get(dep, "count", 0);
+          if (depName) {
             console.log(
               `${chalk.bold.underline.green(depName)}: used in ${
-                dep[depName]?.count
+                depCount
               } file/s.`
             );
           }
