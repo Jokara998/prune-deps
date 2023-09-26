@@ -3,7 +3,7 @@
 Prune-deps is a tool used for analyzing the usage of dependencies and pruning unused dependencies in package.json.
 
 ## Requirements
-* Node >= 10
+* Node >= 16
 
 
 ## Instalation
