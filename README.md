@@ -8,7 +8,7 @@ Prune-deps is a tool used for analyzing the usage of dependencies and pruning un
 
 ## Instalation
 ```
-npm install prune-deps
+npm install -g prune-deps
 ```
 
 ## Syntax Support
