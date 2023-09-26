@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import _ from 'lodash';
+import _ from "lodash";
 import fs from "fs";
-import depcheck  from 'depcheck';
-import inquirer from 'inquirer';
+import depcheck from "depcheck";
+import inquirer from "inquirer";
 import ora from "ora";
-import chalk from 'chalk';
-import { execa } from 'execa';
-import pkg from './package.js';
+import chalk from "chalk";
+import { execa } from "execa";
+import pkg from "./package.js";
 
 let depCheckOptions = {};
 
@@ -48,10 +48,12 @@ depcheck(process.cwd(), depCheckOptions).then((unused) => {
   };
 
   const usageOfDependecies = _.get(unused, "using", {});
-  const usageByDependency = _.chain(usageOfDependecies)
+  let usageByDependency = _.chain(usageOfDependecies)
     .entries()
-    .map(([key, value]) => ({ [key]: value?.length || 0 }))
+    .map(([key, value]) => ({ [key]: { count: value?.length || 0 } }))
     .value();
+
+  usageByDependency = _.sortBy(_.values(usageByDependency), ["count"]);
 
   const optChoices = [unselectable()];
   const opts = _.values(OPTS);
@@ -82,11 +84,13 @@ depcheck(process.cwd(), depCheckOptions).then((unused) => {
         console.log(`${chalk.bold.underline.green("Dependecies usage: ")} \n`);
         _.forEach(usageByDependency, (dep) => {
           const depName = _.get(_.keys(dep), "[0]", "");
-          console.log(
-            `${chalk.bold.underline.green(depName)}: used in ${
-              dep[depName]
-            } file/s.`
-          );
+          if (depName && dep[depName]?.count) {
+            console.log(
+              `${chalk.bold.underline.green(depName)}: used in ${
+                dep[depName]?.count
+              } file/s.`
+            );
+          }
         });
       }
 
