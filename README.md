@@ -1,6 +1,6 @@
 ## prune-deps
 
-Prune-deps is a tool used for analying usage of dependencies and pruning unused dependencies in package.json.
+Prune-deps is a tool used for analyzing the usage of dependencies and pruning unused dependencies in package.json.
 
 ## Requirements
 * Node >= 10
@@ -13,7 +13,7 @@ npm install prune-deps
 
 ## Syntax Support
 
-Depcheck not only recognizes the dependencies in JavaScript files, but also supports these syntaxes:
+Depcheck not only recognizes the dependencies in JavaScript files but also supports these syntaxes:
 
 - JavaScript (ES5, ES6 and ES7)
 - [React JSX](http://facebook.github.io/react/docs/jsx-in-depth.html)
